@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+  <title>React Sample Project 1</title>
+  <link rel="stylesheet" type="text/css" href="ReactProject.css" />
+</head>
+ 
+<body>
+	<h1>Google Maps</h1>
+	<div id="container"></div>
+	<div id="image"></div>
+ 
+  <script>
+function myMap() {
+  var myCenter = new google.maps.LatLng(40.7128,-74.0059);
+  var mapCanvas = document.getElementById("image");
+  var mapOptions = {center: myCenter, zoom: 5,
+				   mapTypeId:google.maps.MapTypeId.SATELLITE};   
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+  var marker = new google.maps.Marker({position: myCenter,
+									  animation: google.maps.Animation.BOUNCE
+									  });
+  marker.setMap(map);
+  google.maps.event.addListener(marker,'click',function() {
+    map.setZoom(9);
+    map.setCenter(marker.getPosition());
+  });	
+  var infowindow = new google.maps.InfoWindow({
+    content: "New York, NY"
+  });
+  infowindow.open(map,marker);
+}
+		
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+<script src="output/myCode.js"></script>
+</body>
+ 
+</html>
